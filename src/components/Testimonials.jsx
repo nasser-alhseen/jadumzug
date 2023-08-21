@@ -9,13 +9,21 @@ export default function Testimonials() {
   const [name, setName] = useState('');
   const [content, setContent] = useState('');
   const { t, i18n } = useTranslation();
+  var ls = require('local-storage');
 
 
 
   // function to fetch the list of objects from an API
   const fetchServices = async () => {
+
     try {
-      const response = await fetch('https://jad-umzug.onrender.com/opinions/all');
+      const response = await fetch('https://jad-umzug.onrender.com/opinions/all', {
+        method: 'POST', // Specify the HTTP method you want to use
+        headers: {
+          'Content-Type': 'application/json', // Specify the content type of the request body
+        },
+        body: JSON.stringify({ lang: ls.get('lang') }), // Replace { key: 'value' } with your actual request body
+      });
       const data = await response.json();
       const selectedData = data['data'];
       const randomData = selectedData.sort(() => Math.random() - 0.5).slice(0, 5);
@@ -33,7 +41,7 @@ export default function Testimonials() {
     const response = await fetch('https://jad-umzug.onrender.com/opinions/upload', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ content, name })
+      body: JSON.stringify({ content: content, name: name, lang: ls.get("lang") })
     });
 
     if (!response.ok) throw new Error('Failed to upload opinion');

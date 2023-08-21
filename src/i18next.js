@@ -1,5 +1,8 @@
 import i18n from "i18next";
 import { useTranslation, initReactI18next } from "react-i18next";
+var ls = require('local-storage');
+var lang=ls.get('lang');
+if(lang===null)lang='du'
 
 i18n
   .use(initReactI18next) // passes i18n down to react-i18next
@@ -25,7 +28,7 @@ i18n
           "name": "Name",
           "review": "Review",
           "happe_customers": "Happy Customers ",
-          "about_us": "",
+          "about_us": "Welcome to JadUmZuge! We are a small relocation company that assists people in moving to new homes in Germany. Our aim is to provide exceptional and reliable service to our clients, making the moving process an easy and comfortable experience. Depending on your needs, we offer packing and moving services, as well as assistance with arranging your new home. Contact us today for a free consultation and an efficient moving experience to your new home.",
           "copy_rights": "Copyright © 2023 JadUmZug. All rights reserved"
 
         }
@@ -48,11 +51,11 @@ i18n
           "name": "الاسم",
           "review": "مراجعة",
           "happe_customers": "زبائن سعداء",
-          "about_us": "",
+          "about_us": "مرحبًا بك في شركة جاد للنقل ! نحن شركة صغيرة للنقل والترحيل نساعد الأشخاص في الانتقال إلى منازل جديدة في ألمانيا. نهدف إلى تقديم خدمة استثنائية وموثوقة لعملائنا، وجعل عملية الانتقال تجربة سهلة ومريحة. اعتمادًا على احتياجاتك، نوفر خدمات التعبئة والتغليف، والنقل، والترتيب في المنزل الجديد. اتصل بنا اليوم للحصول على استشارة مجانية وتجربة فعالة للانتقال إلى منزلك الجديد.",
           "copy_rights": "جميع الحقوق محفوظة © 2023 JadUmZug"
         }
       },
-      de: {
+      du: {
         translation: {
           "home": "الصفحة الرئيسية",
           "services": "Dienstleistungen",
@@ -69,12 +72,12 @@ i18n
           "name": "Name",
           "review": "Bewertung",
           "happe_customers": "Zufriedene Kunden",
-          "about_us": "",
+          "about_us": "Willkommen bei JadUmZuge! Wir sind ein kleines Umzugsunternehmen, das Menschen beim Umzug in neue Häuser in Deutschland hilft. Unser Ziel ist es, unseren Kunden einen außergewöhnlichen und zuverlässigen Service zu bieten und den Umzugsprozess zu einer einfachen und komfortablen Erfahrung zu machen. Je nach Ihren Bedürfnissen bieten wir Verpackungs- und Umzugsservices sowie Hilfe beim Einrichten in Ihrem neuen Zuhause an. Kontaktieren Sie uns noch heute für eine kostenlose Beratung und eine effiziente Umzugserfahrung in Ihr neues Zuhause.",
           "copy_rights": "Copyright © 2023 JadUmZug. Alle Rechte vorbehalten."
         }
       }
     },
-    lng: "en", // if you're using a language detector, do not define the lng option
+    lng: lang, // if you're using a language detector, do not define the lng option
     fallbackLng: "en",
 
     interpolation: {

@@ -6,6 +6,9 @@ import Inventory2OutlinedIcon from '@mui/icons-material/Inventory2Outlined';
 import HandymanOutlinedIcon from '@mui/icons-material/HandymanOutlined';
 import CleaningServicesOutlinedIcon from '@mui/icons-material/CleaningServicesOutlined';
 import { useState, useEffect } from "react";
+import { useTranslation, withTranslation, Trans } from 'react-i18next';
+var ls = require('local-storage');
+
 const icons = [
   <LocalShippingOutlinedIcon style={{ fontSize: '3rem', color: 'white' }} />,
   <Inventory2OutlinedIcon style={{ fontSize: '3rem', color: 'white' }} />,
@@ -17,12 +20,20 @@ const icons = [
 
 ];
 export default function Services() {
+  const { t, i18n } = useTranslation();
+
   const [services, setServices] = useState([]);
 
   // function to fetch the list of objects from an API
   const fetchServices = async () => {
     try {
-      const response = await fetch('https://jad-umzug.onrender.com/services/all');
+      const response = await fetch('https://jad-umzug.onrender.com/services/all', {
+        method: 'POST', // Specify the HTTP method you want to use
+        headers: {
+          'Content-Type': 'application/json', // Specify the content type of the request body
+        },
+        body: JSON.stringify({ lang: ls.get('lang') }), // Replace { key: 'value' } with your actual request body
+      });
       const data = await response.json();
       setServices(data['data']);
     } catch (error) {
@@ -38,8 +49,8 @@ export default function Services() {
 
   return (
     <Section id="services">
-        <div className="title">
-        <h2></h2>
+      <div className="title">
+        <h2>{t("services")}</h2>
       </div>
       {(services).map((service, index) => {
         return (
