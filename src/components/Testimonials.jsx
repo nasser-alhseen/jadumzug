@@ -2,11 +2,13 @@ import React from "react";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { TextField } from "@material-ui/core";
+import { useTranslation, withTranslation, Trans } from 'react-i18next';
 
 export default function Testimonials() {
   const [opinions, setOpinions] = useState([]);
   const [name, setName] = useState('');
   const [content, setContent] = useState('');
+  const { t, i18n } = useTranslation();
 
 
 
@@ -44,7 +46,7 @@ export default function Testimonials() {
   return (
     <Section id="testimonials">
       <div className="title">
-        <h2>Happy Customers</h2>
+        <h2>{t("happe_customers")}</h2>
       </div>
       <div className="testimonials">
 
@@ -70,10 +72,10 @@ export default function Testimonials() {
       <div className="formDiv">
         <TextField
           variant="outlined"
-          label="Name"
+          label={t("name")}
           InputProps={{
             style: {
-              height: '2.5rem',
+              height: '2.8rem',
               borderRadius: '4px',
               padding: '4px',
             },
@@ -81,13 +83,13 @@ export default function Testimonials() {
           value={name}
           onChange={(event) => setName(event.target.value)}
         />
-        <h2 className="con">     a  </h2>
+        <h2 className="con">d </h2>
         <TextField
           variant="outlined"
-          label="Review"
+          label={t("review")}
           InputProps={{
             style: {
-              height: '2.5rem',
+              height: '2.8rem',
               borderRadius: '4px',
               padding: '4px',
             },
@@ -97,7 +99,7 @@ export default function Testimonials() {
         />
         <h2 className="con">     a  </h2>
 
-        <button className="btn2" onClick={() => uploadOpinion(content, name)}>Submit</button>
+        <button className="btn2" onClick={() => uploadOpinion(content, name)}> {t("submit")} </button>
       </div>
 
     </Section>

@@ -90,6 +90,13 @@
 
     ;
 } */
+
+.dropdown {
+  border-radius: 0.5rem;
+  padding: 0.4rem;
+  font-size: 0.7rem;
+  width: 4rem;
+}
 .logo img{
   width: 150px;
 

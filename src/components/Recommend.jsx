@@ -1,10 +1,13 @@
 import React, { useState,useEffect } from "react";
 import styled from "styled-components";
 
+import { useTranslation, withTranslation, Trans } from 'react-i18next';
 
 
 
 export default function Recommend() {
+  const { t, i18n } = useTranslation();
+
 
   const [images,setImages]=useState([])
   const fetchServices = async () => {
@@ -27,7 +30,7 @@ export default function Recommend() {
   return (
     <Section id="recommend">
       <div className="title">
-        <h2>Photo Gallery</h2>
+        <h2>{t("gallery")}</h2>
 
       </div>
       {/* <div className="packages">

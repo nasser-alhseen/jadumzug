@@ -1,22 +1,26 @@
 import React from "react";
 import styled from "styled-components";
 import {  BsFacebook ,BsInstagram } from "react-icons/bs";
+import { useTranslation, withTranslation, Trans } from 'react-i18next';
+
 export default function Footer() {
+  const { t, i18n } = useTranslation();
+
   return (
     <FooterContainer>
       <span>Copyright &copy; 2023 JadUmZug. All rights reserved</span>
       <ul className="links">
         <li>
-          <a href="#hero">Home</a>
+          <a href="#hero">{t("home")}</a>
         </li>
         <li>
-          <a href="#services">Services</a>
+          <a href="#services">{t("services")}</a>
         </li>
         <li>
-          <a href="#recommend">Photo Gallery</a>
+          <a href="#recommend">{t("gallery")}</a>
         </li>
         <li>
-          <a href="#testimonials">Testimonials</a>
+          <a href="#testimonials">{t("testimonials")}</a>
         </li>
        
       </ul>

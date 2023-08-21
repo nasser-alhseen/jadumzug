@@ -1,13 +1,29 @@
+
 import { React, useState } from "react";
 import styled from "styled-components";
+import '../i18next'
 import homeImage from "../assets/mainBackground.jpg";
 import Navbar from "./Navbar2";
 import { TextField } from "@material-ui/core";
 import { DatePicker, TimePicker } from "@mui/x-date-pickers";
+import { useTranslation, withTranslation, Trans } from 'react-i18next';
+
+import ReactFlagsSelect from "react-flags-select";
+import Dropdown from 'react-dropdown';
+import 'react-dropdown/style.css';
 
 
 export default function Hero() {
+  const [selected, setSelected] = useState("");
+  const options = [
+    'one', 'two', 'three'
+  ];
+  const defaultOption = options[0];
+  const { t, i18n } = useTranslation();
 
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
   function handleSendClick() {
     const phoneNumber = '+963992670932'; // Replace with the recipient's phone number
     const messageText = encodeURIComponent("");
@@ -27,6 +43,7 @@ export default function Hero() {
     <Section id="hero">
       <div className="background">
         <img className="backImg" src={homeImage} alt="" />
+
       </div>
 
       <div className="content">
@@ -35,25 +52,14 @@ export default function Hero() {
         </div>
         <div className="formContainer">
           <div className="title">
-            <h1>Moving doesn't have to be stressful </h1>
+            <h1> {t('welcome_message')}</h1>
 
           </div>
           <div className="search">
             <div className="container">
 
 
-              <label htmlFor="">What is your current address ?</label>
-              <TextField
-                variant="outlined"
-                InputProps={{
-                  style: {
-                    height: '32px', // set the height of the input
-                    border: '1px solid #ccc', // set the border
-                    borderRadius: '4px', // set the border radius
-                    padding: '4px 8px', // set the padding
-                  },
-                }}
-              />            <label htmlFor="">Where you want to move ?</label>
+              <label htmlFor="">{t('first_q')}</label>
               <TextField
                 variant="outlined"
                 InputProps={{
@@ -65,9 +71,21 @@ export default function Hero() {
                   },
                 }}
               />
-              <label htmlFor="">What items do you have ?
+              <label htmlFor="">{t('second_q')}</label>
+              <TextField
+                variant="outlined"
+                InputProps={{
+                  style: {
+                    height: '32px', // set the height of the input
+                    border: '1px solid #ccc', // set the border
+                    borderRadius: '4px', // set the border radius
+                    padding: '4px 8px', // set the padding
+                  },
+                }}
+              />
+              <label htmlFor="">{t('third_q')}</label>
 
-              </label>
+
               <TextField
                 variant="outlined"
                 InputProps={{
@@ -79,7 +97,7 @@ export default function Hero() {
                   },
                 }}
               />
-              <label htmlFor="">Choose A Date ?
+              <label htmlFor="">{t('choose_data')}
 
               </label>
               <DatePicker
@@ -90,22 +108,21 @@ export default function Hero() {
                     border: '1px solid #ccc', // set the border
                     borderRadius: '4px', // set the border radius
                     padding: '4px 8px', // 
-                    width:'12rem'
+                    width: '12rem'
                   },
                 }}              ></DatePicker>
-              <label htmlFor="">Choose A Timme ?
-
+              <label htmlFor="">{t('choose_time')}
               </label>
-              <TimePicker  
-                 sx={{
+              <TimePicker
+                sx={{
                   '& .MuiInputBase-root': {
                     height: '32px',
                     border: '1px solid #ccc', // set the border
                     borderRadius: '4px', // set the border radius
                     padding: '4px 8px', // 
-                    width:'12rem'
+                    width: '12rem'
                   },
-                }}       
+                }}
               ></TimePicker>
             </div>
 
